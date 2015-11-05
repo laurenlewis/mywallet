@@ -7,9 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div>
-  <%= link_to "Sign up now!", signup_path %>
-</div>
+
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Home",   '/' %></li>
+            <% if session[:session_user_id] %>
+            <li><%= link_to "My Page", {:controller =>'users', :action => 'show', :id => session[:session_user_id]} %></li>       
+            <li><%= link_to "New Card", {:controller =>'cards', :action => 'new'} %></li>
+            <% end %>
+        </ul>
+      </nav>
+    <div class="login_info">
+      <% if session[:session_user_id] %>
+        <%= link_to "Logout", '/logout' %><br>
+        <%= session[:session_user_email] %>
+      <% else %>
+        <%= link_to "Login", '/login' %> | 
+        <%= link_to "Sign-Up", '/signup' %>
+      <% end %>
+    </div>
+  </header>
+
   <!-- start flash messaging -->
   <% if flash[:notice] %>
 	<div class="flash_notice">
