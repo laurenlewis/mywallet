@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/' => "home#index"
-  get 'signup'  => 'users#new'
+  get '/signup'  => 'users#new'
 
 
   get    'login'   => 'sessions#new'
