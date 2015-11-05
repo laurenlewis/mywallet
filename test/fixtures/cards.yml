@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  card_number: 1
+  card_type: MyString
+  expiration_month: 1
+  expiration_year: 1
+  balance: 9.99
+
+two:
+  card_number: 1
+  card_type: MyString
+  expiration_month: 1
+  expiration_year: 1
+  balance: 9.99
