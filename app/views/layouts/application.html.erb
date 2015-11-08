@@ -14,7 +14,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Home",   '/' %></li>
             <% if session[:session_user_id] %>
-            <li><%= link_to "My Page", {:controller =>'users', :action => 'show', :id => session[:session_user_id]} %></li>       
+            <li><%= link_to "My Profile", {:controller =>'users', :action => 'show', :id => session[:session_user_id]} %></li>       
             <li><%= link_to "New Card", {:controller =>'cards', :action => 'new'} %></li>
             <% end %>
         </ul>
