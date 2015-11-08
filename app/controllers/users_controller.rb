@@ -28,9 +28,11 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @ownedCards = @user.ownedCards
+    @sharedCards = @user.sharedCards
   end 
 
-    def destroy   
+  def destroy   
     @user = User.find(params[:id])   
     if @user.destroy     
       session.destroy

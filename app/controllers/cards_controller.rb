@@ -32,6 +32,27 @@ class CardsController < ApplicationController
   	@card = Card.find(params[:id])
   end
 
+  # Show form to share the card with another user
+  def share
+    @card = Card.find(params[:id])
+  end
+
+  # Process form to share a card with another user
+  def processShare
+    @card = Card.find(params[:id])
+    given_email = params[:email]
+
+    # Look up to make sure there is a user with that email
+    @shareUser = User.where(email: given_email)
+
+    # Add the given card to that user as a shared card
+    if (@shareUser)
+      @shareUser.addSharedCard(@card)
+    else
+      # To Do - Error!
+    end
+  end
+
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def card_params

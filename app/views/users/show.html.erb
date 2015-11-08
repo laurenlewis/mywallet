@@ -5,7 +5,7 @@
 </h2>
 
 <div class="cards">
-  <% @list = @user.cards %>
+  <% @list = @ownedCards %>
   <% if @list.length != 0 %>
 	  <% @list.each do | card | %>
 		<%= card.card_number %>

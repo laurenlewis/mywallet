@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Welcome to MyWallet</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -15,7 +16,7 @@
           <li><%= link_to "Home",   '/' %></li>
             <% if session[:session_user_id] %>
             <li><%= link_to "My Profile", {:controller =>'users', :action => 'show', :id => session[:session_user_id]} %></li>       
-            <li><%= link_to "New Card", {:controller =>'cards', :action => 'new'} %></li>
+            <li><%= link_to 'New Card', {:controller =>'cards', :action => 'new'} %></li>
             <% end %>
         </ul>
       </nav>
@@ -43,7 +44,11 @@
   <% end %>
   <!-- end flash messaging -->
 
-<%= yield %>
+  <div class="row">
+    <div id="main-content" class="container">
+      <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>

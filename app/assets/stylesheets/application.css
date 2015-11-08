@@ -26,6 +26,7 @@ li a {
 	right: 10px;
 	border: 1px solid #ccc;
 	padding: 10px;
+	background-color: #efefef;
 }
 
 #login_title {
@@ -59,6 +60,11 @@ li a {
 .field {
 	margin-bottom: 10px;
 }
+
+#main-content {
+	padding-top: 100px;
+}
+
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

@@ -2,7 +2,7 @@
 
 <h1>All Cards</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Card Number</th>
@@ -27,5 +27,5 @@
 </table>
 
 <% if session[:session_user_id] %>
-  <%= link_to 'New Card', new_card_path %>
+  <%= link_to 'New Card', new_card_path, { :class=>"btn btn-primary" } %>
 <% end %>
