@@ -1,5 +1,8 @@
 <h1>Add a New Card</h1>
+<% if session[:session_user_id] %>
+	<%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', cards_path %>
+	<%= link_to 'Back', cards_path %>
+<% else %>
+	<h3>You must be logged in to add a card.</h3>
+<% end %>

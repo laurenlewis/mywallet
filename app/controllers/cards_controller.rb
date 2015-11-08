@@ -6,15 +6,21 @@ class CardsController < ApplicationController
   def create 
     @card = Card.new(card_params)
 
-    respond_to do |format|
-      if @card.save
-        format.html { redirect_to @card, notice: 'Card was successfully added.' }
-        format.json { render :show, status: :created, location: @card }
-      else
-        format.html { render :new }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
-      end
-    end
+    if session[:session_user_id]
+	    respond_to do |format|
+	      if @card.save
+	      	# Assign the Card a User 
+	      	@user = User.find(session[:session_user_id])
+	      	@user.addCard(@card)
+
+	        format.html { redirect_to @card, notice: 'Card was successfully added.' }
+	        format.json { render :show, status: :created, location: @card }
+	      else
+	        format.html { render :new }
+	        format.json { render json: @card.errors, status: :unprocessable_entity }
+	      end
+	    end
+	end
   end
 
   def index 

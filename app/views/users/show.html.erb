@@ -6,11 +6,14 @@
 
 <div class="cards">
   <% @list = @user.cards %>
-  <% @list.each do | card | %>
-	<%= @card.card_number %>
-	<%= @card.card_type %>
-	<%= @card.expiration_month %>
-	<%= @card.expiration_year %>
+  <% if @list.length != 0 %>
+	  <% @list.each do | card | %>
+		<%= card.card_number %>
+		<%= card.card_type %>
+		| Expires: <%= card.expiration_month %>/<%= card.expiration_year %><br>
+	  <% end %>
+  <% else %>
+  	<h3>You have no cards.</h3>
   <% end %>
 </div>
  	 
