@@ -4,3 +4,14 @@
   <%= @user.lname %>
 </h2>
 
+<div class="cards">
+  <% @list = @user.cards %>
+  <% @list.each do | card | %>
+	<%= @card.card_number %>
+	<%= @card.card_type %>
+	<%= @card.expiration_month %>
+	<%= @card.expiration_year %>
+  <% end %>
+</div>
+ 	 
+  
