@@ -5,10 +5,10 @@
 </h2>
 
 <div class="cards">
-  <p>Cards:</p>
   <% @list = @ownedCards %>
   <% if @list.length != 0 %>
 	  <% @list.each do | card | %>
+    <p>Cards:</p>
 		<%= card.card_number %>
 		<%= card.card_type %>
 		| Expires: <%= card.expiration_month %>/<%= card.expiration_year %><br>

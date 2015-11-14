@@ -50,6 +50,7 @@ class CardsController < ApplicationController
       @shareUser.addSharedCard(@card)
     else
       # To Do - Error!
+      flash[:alert] = "This card has been shared!"
     end
   end
 
