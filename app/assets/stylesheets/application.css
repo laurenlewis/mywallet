@@ -42,11 +42,23 @@ li a {
 }
 
 .home_tag {
-	display: inline;
+	display: inline-block;
 	float: left;
 	height: 150px;
 	width: 150px;
 	margin: 10px;
+	background-color: #6699FF;
+	/*padding: 15px;*/
+	overflow: hidden;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+
+.home_tag p {
+	transform: translateY(20%);
+	padding: 15px;
+	position: relative;
+	text-align: center;
 }
 
 .field_with_errors input {
@@ -64,7 +76,6 @@ li a {
 #main-content {
 	padding-top: 100px;
 }
-
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
