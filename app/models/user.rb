@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :fname, presence: true
   validates :lname, presence: true
 
+  before_save :get_card_type
 
   # ---- User Class Instance Methods: ----
 
