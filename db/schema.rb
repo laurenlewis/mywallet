@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109204936) do
+ActiveRecord::Schema.define(version: 20151115225330) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "card_number",      limit: 16
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20151109204936) do
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password"
-    t.integer  "phone",      limit: 10
     t.string   "fname"
     t.string   "lname"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "phone"
   end
 
 end
