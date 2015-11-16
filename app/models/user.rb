@@ -9,9 +9,12 @@ class User < ActiveRecord::Base
   validates :fname, presence: true
   validates :lname, presence: true
 
-  before_save :get_card_type
+  before_save :format_phone
 
-  # ---- User Class Instance Methods: ----
+  def format_phone
+  	cleanup = self.phone.gsub(" ", "").gsub(".", "").gsub("-", "")
+  	self.phone = cleanup
+  end
 
   # Add a given card to this user
   def addCard(givenCard)
@@ -27,7 +30,7 @@ class User < ActiveRecord::Base
   def ownedCards
   	cus_owned_by_user = cards_users.where(user_id: self.id, is_shared: false)
 
-  	# Have a list of CardsUsers, but want a list of Cards
+  	# Have a list of CardsUsers, but want a list of Owned Cards
   	owned_cards = []
   	cus_owned_by_user.each do | cu |
   		card = Card.find(cu.card_id)
@@ -40,7 +43,7 @@ class User < ActiveRecord::Base
   def sharedCards
   	cus_shared_with_user = cards_users.where(user_id: self.id, is_shared: true)
 
-  	# Have a list of CardsUsers, but want a list of Cards
+  	# Have a list of CardsUsers, but want a list of Shared Cards
   	shared_cards = []
   	cus_shared_with_user.each do | cu |
   		card = Card.find(cu.card_id)

@@ -6,9 +6,16 @@ class Card < ActiveRecord::Base
 	 uniqueness: true,
 	 presence: true,
 	 format: {with: /\A(3[4,7][0-9]{13}|4([0-9]{12}|[0-9]{15})|6011[0-9]{12}|65[0-9]{14}|5[1-5]{1}[0-9]{14}|\b622(1(2[6-9][0-9]{10}|[3-9][0-9]{11})|[2-8][0-9]{12}|9([01][0-9]{11}|2[0-5][0-9]{10}))\b)\z/, message: "Enter a valid Amex, Visa, Discover, or Mastercard"}
+
+  validates_numericality_of :expiration_month, presence: true, 
+    :greater_than_or_equal_to => 1,
+    :less_than_or_equal_to => 12,
+    :message => "can only be a whole number between 1 and 12."
   
-  validates :expiration_month, presence: true
-  validates :expiration_year, presence: true
+  validates_numericality_of :expiration_year, presence: true,
+    :greater_than_or_equal_to => 2015,
+    :less_than_or_equal_to => 2025,
+    :message => "can only be between 2015 and 2025."
 
   before_save :set_card_type
 
