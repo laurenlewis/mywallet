@@ -26,9 +26,9 @@ class User < ActiveRecord::Base
   	cards_users.create(card_id: givenCard.id, is_shared: true)
   end
 
-  # Get the cards the users owns
+  # Get the cards the user owns
   def ownedCards
-  	cus_owned_by_user = cards_users.where(user_id: self.id, is_shared: false)
+  	cus_owned_by_user = cards_users.where(is_shared: false)
 
   	# Have a list of CardsUsers, but want a list of Owned Cards
   	owned_cards = []
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   	owned_cards
   end
 
-  # Get the cards the users owns
+  # Get the cards the user had shared with them
   def sharedCards
   	cus_shared_with_user = cards_users.where(user_id: self.id, is_shared: true)
 
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   	shared_cards = []
   	cus_shared_with_user.each do | cu |
   		card = Card.find(cu.card_id)
-  		owned_cards.push(card)
+  		shared_cards.push(card)
   	end
   	shared_cards
   end

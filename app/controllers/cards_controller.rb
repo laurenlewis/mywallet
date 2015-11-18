@@ -24,7 +24,7 @@ class CardsController < ApplicationController
   end
 
   def index 
-    @cards = Card.all  
+    @cards = Card.all
     @users = User.all
   end 
 
@@ -39,19 +39,34 @@ class CardsController < ApplicationController
 
   # Process form to share a card with another user
   def processShare
-    @card = Card.find(params[:id])
-    given_email = params[:email]
+    if session[:session_user_id]
+      @card = Card.find(params[:id])
+      given_email = params[:email]
 
-    # Look up to make sure there is a user with that email
-    @shareUser = User.where(email: given_email)
+      # Look up to make sure there is a user with that email
+      @shareUser = User.find_by_email(given_email)
 
-    # Add the given card to that user as a shared card
-    if (@shareUser)
-      @shareUser.addSharedCard(@card)
-    else
-      # To Do - Error!
-      flash[:alert] = "This card has been shared!"
+      # Add the given card to that user as a shared card
+      if (@shareUser)
+        @shareUser.addSharedCard(@card)
+        flash[:notice] = "The card has been shared with #{given_email}."
+      else
+        # Error. The user doesn't exist.
+        flash[:alert] = "The card has not been shared. There is no user with the given email address."
+      end
+
+      redirect_to :controller =>'users', :action => 'show', :id => session[:session_user_id]
     end
+  end
+
+  def destroy   
+    @card = Card.find(params[:id])   
+    if @card.destroy     
+      flash[:notice] = "Your card has been deleted successfully."   
+    else     
+      flash[:alert] = "There was a problem deleting the card."   
+    end   
+    redirect_to :back
   end
 
   private

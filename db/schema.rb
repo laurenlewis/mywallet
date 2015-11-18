@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115225330) do
+ActiveRecord::Schema.define(version: 20151118013551) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "card_number",      limit: 16
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20151115225330) do
   end
 
   create_table "cards_users", id: false, force: :cascade do |t|
-    t.integer "card_id",   null: false
-    t.integer "user_id",   null: false
-    t.boolean "is_shared"
+    t.integer "card_id",                   null: false
+    t.integer "user_id",                   null: false
+    t.boolean "is_shared", default: false
   end
 
   add_index "cards_users", ["card_id", "user_id"], name: "index_cards_users_on_card_id_and_user_id"

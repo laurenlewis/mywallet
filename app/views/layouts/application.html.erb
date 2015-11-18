@@ -31,21 +31,20 @@
     </div>
   </header>
 
-  <!-- start flash messaging -->
-  <% if flash[:notice] %>
-	<div class="flash_notice">
-		<%=flash[:notice] %>
-	</div>
-  <% end %>
-  <% if flash[:alert] %>
-	<div class="flash_alert">
-		<%=flash[:alert] %>
-	</div>
-  <% end %>
-  <!-- end flash messaging -->
-
   <div class="row">
     <div id="main-content" class="container">
+      <!-- start flash messaging -->
+      <% if flash[:notice] %>
+        <div class="alert alert-success flash_notice">
+          <%=flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger flash_alert">
+          <%=flash[:alert] %>
+        </div>
+      <% end %>
+      <!-- end flash messaging -->
       <%= yield %>
     </div>
   </div>

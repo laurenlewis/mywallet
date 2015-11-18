@@ -30,6 +30,12 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @ownedCards = @user.ownedCards
     @sharedCards = @user.sharedCards
+
+    # Get Total Balance of all Owned Cards
+    @total_balance = 0 # initialize sum
+    @ownedCards.each do |card|
+      @total_balance = @total_balance + card.balance
+    end
   end 
 
   def destroy   
@@ -41,7 +47,8 @@ class UsersController < ApplicationController
       flash[:alert] = "There was a problem deleting the user."   
     end   
     redirect_to :back
-  	end
+	end
+    
   private
   # Use callbacks to share common setup or constraints between actions.
     def set_user
