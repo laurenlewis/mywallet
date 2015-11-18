@@ -60,7 +60,8 @@ class CardsController < ApplicationController
   end
 
   def destroy   
-    @card = Card.find(params[:id])   
+    @card = Card.find(params[:id])
+    @card.cards_users.destroy 
     if @card.destroy     
       flash[:notice] = "Your card has been deleted successfully."   
     else     
