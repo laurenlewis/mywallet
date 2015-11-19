@@ -13,7 +13,10 @@
   		<%= card.card_number %>
   		<%= card.card_type %>
   		| Expires: <%= card.expiration_month %>/<%= card.expiration_year %>
-      | Balance: $<%= number_with_precision card.balance, :precision => 2 %> | <a href="/cards/<%=card.id %>/share">Share</a> | <a class="btn btn-xs btn-danger" data-method="delete" href="/cards/<%=card.id %>">Delete <span class="glyphicon glyphicon-trash"></span></a> <br>
+      | Balance: $<%= number_with_precision card.balance, :precision => 2 %> 
+      | <a href="/cards/<%=card.id %>/share">Share</a> 
+      | <a href="/cards/<%=card.id %>/edit">Edit</a> 
+      | <a class="btn btn-xs btn-danger" data-method="delete" href="/cards/<%=card.id %>">Delete <span class="glyphicon glyphicon-trash"></span></a> <br>
   	  <% end %>
       <h5>Total Balance of your cards: $<%= number_with_precision @total_balance, :precision => 2 %></h5>
     <% else %>

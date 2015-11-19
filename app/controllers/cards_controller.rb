@@ -31,6 +31,20 @@ class CardsController < ApplicationController
     end
   end 
 
+  def edit
+    @card = Card.find(params[:id])
+  end
+
+  def update
+    @card = Card.find(params[:id])
+    if @card.update_attributes(card_params)
+      flash[:notice] = "Your card was successfully updated!"
+      redirect_to :controller =>'users', :action => 'show', :id => session[:session_user_id]
+    else
+      render 'edit'
+    end
+  end
+
   def show
   	@card = Card.find(params[:id])
   end
@@ -77,7 +91,7 @@ class CardsController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def card_params
-      params.require(:card).permit(:card_number, :card_type, :expiration_month, :expiration_year)
+      params.require(:card).permit(:card_number, :card_type, :expiration_month, :expiration_year, :balance)
   end  
 
 end
