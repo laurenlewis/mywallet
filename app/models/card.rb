@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  has_many :cards_users, :class_name => 'CardsUser'
+  has_many :cards_users, :class_name => 'CardsUser', :dependent => :destroy
   has_many :users, through: :cards_users
 
   validates :card_number,
