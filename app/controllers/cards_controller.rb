@@ -20,12 +20,15 @@ class CardsController < ApplicationController
 	        format.json { render json: @card.errors, status: :unprocessable_entity }
 	      end
 	    end
-	end
+  	end
   end
 
   def index 
-    @cards = Card.all
-    @users = User.all
+    if session[:session_user_id] != 10
+      head :forbidden
+    else
+      @cards = Card.all
+    end
   end 
 
   def show
