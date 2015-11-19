@@ -27,4 +27,4 @@
   </table>
 </p>
 
-<%= link_to 'Back', cards_path %>
+<%= link_to 'Back', {:controller =>'users', :action => 'show', :id => session[:session_user_id]} %>
