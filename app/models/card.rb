@@ -14,8 +14,10 @@ class Card < ActiveRecord::Base
   
   validates_numericality_of :expiration_year, presence: true,
     :greater_than_or_equal_to => 2015,
-    :less_than_or_equal_to => 2025,
-    :message => "can only be between 2015 and 2025."
+    :less_than_or_equal_to => 2035,
+    :message => "can only be between 2015 and 2035."
+
+  validates_numericality_of :balance, presence: true
 
   before_save :set_card_type
 
