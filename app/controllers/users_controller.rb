@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'User was successfully created. Please login with your new credentials.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end   
     redirect_to :back
 	end
-    
+
   private
   # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -58,5 +58,5 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
       params.require(:user).permit(:fname, :lname, :email, :password, :phone)
-    end
+  end
 end
